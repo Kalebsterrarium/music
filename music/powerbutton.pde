@@ -1,6 +1,6 @@
 color resetwhite=#FFFFFF, yellow=#FFF703, cyan=#5FE7EA, buttoncolor;
 float powerbuttonX, powerbuttonY, powerbuttonWidth, powerbuttonHeight;
-String
+String powerButton = "power";
 //
 void powerbutton() {
   powerbuttonX=displayWidth*29/32;
@@ -14,14 +14,13 @@ void powerbuttondraw() {
   //Hoverover
   if (mouseX>powerbuttonX && mouseX<powerbuttonX+powerbuttonWidth && mouseY>powerbuttonY && mouseY<powerbuttonY+powerbuttonHeight) {
     buttoncolor=cyan;
-    fill(buttoncolor);
-     rect(powerbuttonX, powerbuttonY, powerbuttonWidth, powerbuttonHeight);
-     fill(resetwhite);
+   hoveroverbuttonfill();
   } else {
     buttoncolor=yellow;
     hoveroverbuttonfill();
   }
   //Text
+  textCode(powerButton, width*3/100, powerbuttonX, powerbuttonY, powerbuttonWidth, powerbuttonHeight);
 }//End powerbuttondraw()
 //
 void powerbuttonmousepressed() {
