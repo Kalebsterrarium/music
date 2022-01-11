@@ -20,8 +20,8 @@ void setup() {
   textSetup();
   //
   minim = new Minim(this);
-  song1 = minim.loadFile("Dinosaur, use screech.mp3");
-  song1.play(1);
+  song1 = minim.loadFile("Music/Dinosaur, use screech.mp3");
+  //song1.play(1);
   
 }//End setup()
 
@@ -30,7 +30,20 @@ void draw() {
 }//End draw()
 
 void keyPressed() {
-}//End keyPressed()
+  if (key == 'p') {
+    if ( song1.isPlaying() ) {
+    song1.pause();
+  } else if ( song1.position() >= song1.length()- 1000) {
+    song1.rewind();
+    song1.play();
+    } else {song1.play();}
+  }
+}
+  
+   
+
+
+//End keyPressed()
 
 void mousePressed() {
   powerbuttonmousepressed();
