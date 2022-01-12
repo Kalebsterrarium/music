@@ -22,25 +22,48 @@ void setup() {
   minim = new Minim(this);
   song1 = minim.loadFile("Music/Dinosaur, use screech.mp3");
   //song1.play(1);
-  
 }//End setup()
 
 void draw() {
-   powerbuttondraw();
+  powerbuttondraw();
 }//End draw()
 
 void keyPressed() {
   if (key == 'p') {
     if ( song1.isPlaying() ) {
-    song1.pause();
-  } else if ( song1.position() >= song1.length()- 1000) {
-    song1.rewind();
-    song1.play();
-    } else {song1.play();}
+      song1.pause();
+    } else if ( song1.position() >= song1.length()- 500) {
+      song1.rewind();
+      song1.play();
+    } else {
+      song1.play();
+    }
   }
-}
-  
-   
+
+  //Play-Stop
+  if (key == 's') {
+    if (song1.isPlaying() ) {
+      song1.pause();
+      song1.rewind();
+    } else {
+      song1.rewind();
+    }
+  }
+  //FastForward
+  if (key == 'a') song1.skip(1000);
+  //fast rewind
+  if (key == 'r')song1.skip(-1000); 
+  //Mute
+  if (key == 'm') {
+    if (song1.isMuted()) {
+      song1.unmute();
+    } else {
+      song1.mute();
+    }
+  }
+}//End keyPressed()
+
+
 
 
 //End keyPressed()
