@@ -16,6 +16,7 @@ AudioPlayer song1; //creates "play list" variable holding extensions WAV, AIFF, 
 
 void setup() {
   fullScreen();
+  
   population();
   textSetup();
   //
@@ -26,6 +27,12 @@ void setup() {
 
 void draw() {
   powerbuttondraw();
+  //
+  if (song1.isLooping()) {
+    
+    println("Is Looping");
+    println(song1.loopCount());
+  }
 }//End draw()
 
 void keyPressed() {
@@ -61,6 +68,9 @@ void keyPressed() {
       song1.mute();
     }
   }
+  //Loop Function
+  int loopIntNum= 2;//Loop Hardcode
+  if (key == 'l' || key == 'L') song1.loop(loopIntNum);//Play Button
 }//End keyPressed()
 
 
