@@ -12,67 +12,97 @@ import ddf.minim.ugens.*;
 
 //Global Variables
 Minim minim; //creates object to access all functions 
-AudioPlayer song1; //creates "play list" variable holding extensions WAV, AIFF, AU, SND and MP3
-
+int numberofsongs= 3;
+AudioPlayer[] song= new AudioPlayer[numberofsongs]; //creates "play list" variable holding extensions WAV, AIFF, AU, SND and MP3
+int currentsong = numberofsongs - numberofsongs;
 void setup() {
   fullScreen();
-  
+
   population();
   textSetup();
   //
   minim = new Minim(this);
-  song1 = minim.loadFile("Music/Dinosaur, use screech.mp3");
+  song [currentsong] = minim.loadFile("Music/Dinosaur, use screech.mp3");
+  song[currentsong+1] = minim.loadFile("Music/Y2Mate.is - FNAF 3 Good ending song 1HOUR-46kx2MewOQA-160k-1642366526114.mp3");
+  song[currentsong+2] = minim.loadFile("Music/Y2Mate.is - WhatsApp CarDrip Car (HIGHEST QUALITY)-SBo6Z26w5T8-160k-1642536104601.mp3");
   //song1.play(1);
 }//End setup()
 
 void draw() {
   powerbuttondraw();
   //
-  if (song1.isLooping()) {
-    
-    println("Is Looping");
-    println(song1.loopCount());
-  }
+  /*//if (song1.isLooping()) {
+   
+   println("Is Looping");
+   println(song1.loopCount());
+   
+   }
+   */
 }//End draw()
 
 void keyPressed() {
-  if (key == 'p') {
-    if ( song1.isPlaying() ) {
-      song1.pause();
-    } else if ( song1.position() >= song1.length()- 500) {
-      song1.rewind();
-      song1.play();
-    } else {
-      song1.play();
-    }
-  }
+  // =currentsong+1,+=1
+  if ( key == 'l' || key == 'L') song[currentsong].loop(); //Parameter is Parameter is number of repeats
 
-  //Play-Stop
-  if (key == 's') {
-    if (song1.isPlaying() ) {
-      song1.pause();
-      song1.rewind();
+
+
+
+  if (key =='n' || key == 'N') {
+    if (song[currentsong].isPlaying() ) {
+      song[currentsong].pause();
+      song[currentsong].rewind();
+      //
+      if ( currentsong == numberofsongs -1 ) {
+        currentsong=numberofsongs-numberofsongs;
+      } else {
+        currentsong ++;
+      }
+      //
+      currentsong ++;
+      song[currentsong].play();
     } else {
-      song1.rewind();
+      song[currentsong].rewind();
+      currentsong ++;
     }
   }
-  //FastForward
-  if (key == 'a') song1.skip(1000);
-  //fast rewind
-  if (key == 'r')song1.skip(-1000); 
-  //Mute
-  if (key == 'm') {
-    if (song1.isMuted()) {
-      song1.unmute();
-    } else {
-      song1.mute();
-    }
-  }
-  //Loop Function
-  int loopIntNum= 2;//Loop Hardcode
-  if (key == 'l' || key == 'L') song1.loop(loopIntNum);//Play Button
 }//End keyPressed()
 
+/*//if (key == 'p') {
+ if ( song1.isPlaying() ) {
+ song1.pause();
+ } else if ( song1.position() >= song1.length()- 500) {
+ song1.rewind();
+ song1.play();
+ } else {
+ song1.play();
+ }
+ }
+ 
+ //Play-Stop
+ if (key == 's') {
+ if (song1.isPlaying() ) {
+ song1.pause();
+ song1.rewind();
+ } else {
+ song1.rewind();
+ }
+ }
+ //FastForward
+ if (key == 'a') song1.skip(1000);
+ //fast rewind
+ if (key == 'r')song1.skip(-1000); 
+ //Mute
+ if (key == 'm') {
+ if (song1.isMuted()) {
+ song1.unmute();
+ } else {
+ song1.mute();
+ }
+ }
+ //Loop Function
+ int loopIntNum= 2;//Loop Hardcode
+ if (key == 'l' || key == 'L') song1.loop(loopIntNum);//Play Button
+ */
 
 
 
