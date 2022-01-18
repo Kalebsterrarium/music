@@ -23,7 +23,7 @@ void setup() {
   //
   minim = new Minim(this);
   song [currentsong] = minim.loadFile("Music/Dinosaur, use screech.mp3");
-  song[currentsong+1] = minim.loadFile("Music/Y2Mate.is - FNAF 3 Good ending song 1HOUR-46kx2MewOQA-160k-1642366526114.mp3");
+  song[currentsong+1] = minim.loadFile("Music/Y2Mate.is - Good Ending Theme [Extended] - Five Nights at Freddys 3-IHRM5A6bXFQ-160k-1638669252949.mp3");
   song[currentsong+2] = minim.loadFile("Music/Y2Mate.is - WhatsApp CarDrip Car (HIGHEST QUALITY)-SBo6Z26w5T8-160k-1642536104601.mp3");
   //song1.play(1);
 }//End setup()
@@ -52,17 +52,12 @@ void keyPressed() {
       song[currentsong].pause();
       song[currentsong].rewind();
       //
-      if ( currentsong == numberofsongs -1 ) {
-        currentsong=numberofsongs-numberofsongs;
-      } else {
-        currentsong ++;
-      }
+      ArrayFixError();
       //
-      currentsong ++;
       song[currentsong].play();
     } else {
       song[currentsong].rewind();
-      currentsong ++;
+     ArrayFixError();
     }
   }
 }//End keyPressed()
