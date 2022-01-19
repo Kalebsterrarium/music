@@ -25,16 +25,16 @@ void setup() {
   song [currentsong] = minim.loadFile("Music/Dinosaur, use screech.mp3");
   song[currentsong+1] = minim.loadFile("Music/Y2Mate.is - Good Ending Theme [Extended] - Five Nights at Freddys 3-IHRM5A6bXFQ-160k-1638669252949.mp3");
   song[currentsong+2] = minim.loadFile("Music/Y2Mate.is - WhatsApp CarDrip Car (HIGHEST QUALITY)-SBo6Z26w5T8-160k-1642536104601.mp3");
-  //song1.play(1);
+  //song[currentsong].play(1);
 }//End setup()
 
 void draw() {
   powerbuttondraw();
   //
-  /*//if (song1.isLooping()) {
+  /*//if (song[currentsong].isLooping()) {
    
    println("Is Looping");
-   println(song1.loopCount());
+   println(song[currentsong].loopCount());
    
    }
    */
@@ -57,48 +57,61 @@ void keyPressed() {
       song[currentsong].play();
     } else {
       song[currentsong].rewind();
-     ArrayFixError();
+      ArrayFixError();
     }
   }
-}//End keyPressed()
+  if (key == 'b'||key=='B') {
+    if (song[currentsong].isPlaying()) {
+      song[currentsong].pause();
+      song[currentsong].rewind();
+      //
+      ArrayFixError2();
+      //
+      song[currentsong].play();
+    } else {
+      song[currentsong].rewind();
+      ArrayFixError2();
+  }
+  }
+//End keyPressed()
 
-/*//if (key == 'p') {
- if ( song1.isPlaying() ) {
- song1.pause();
- } else if ( song1.position() >= song1.length()- 500) {
- song1.rewind();
- song1.play();
+if (key == 'p') {
+ if ( song[currentsong].isPlaying() ) {
+ song[currentsong].pause();
+ } else if ( song[currentsong].position() >= song[currentsong].length()- 500) {
+ song[currentsong].rewind();
+ song[currentsong].play();
  } else {
- song1.play();
+ song[currentsong].play();
  }
  }
  
  //Play-Stop
  if (key == 's') {
- if (song1.isPlaying() ) {
- song1.pause();
- song1.rewind();
+ if (song[currentsong].isPlaying() ) {
+ song[currentsong].pause();
+ song[currentsong].rewind();
  } else {
- song1.rewind();
+ song[currentsong].rewind();
  }
  }
  //FastForward
- if (key == 'a') song1.skip(1000);
+ if (key == 'a') song[currentsong].skip(1000);
  //fast rewind
- if (key == 'r')song1.skip(-1000); 
+ if (key == 'r')song[currentsong].skip(-1000); 
  //Mute
  if (key == 'm') {
- if (song1.isMuted()) {
- song1.unmute();
+ if (song[currentsong].isMuted()) {
+ song[currentsong].unmute();
  } else {
- song1.mute();
+ song[currentsong].mute();
  }
  }
  //Loop Function
  int loopIntNum= 2;//Loop Hardcode
- if (key == 'l' || key == 'L') song1.loop(loopIntNum);//Play Button
- */
-
+ if (key == 'l' || key == 'L') song[currentsong].loop();//Play Button
+ 
+}
 
 
 //End keyPressed()
